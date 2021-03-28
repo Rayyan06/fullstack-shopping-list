@@ -1,2 +1,2 @@
 # fullstack-shopping-list
-super duper shopping list, made fullstack! 
+super duper shopping list, made fullstack!
