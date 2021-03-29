@@ -3,7 +3,7 @@ from rest_framework.views import APIView
 from .models import ShoppingList, Item
 from rest_framework.response import Response
 from rest_framework import generics
-
+from django.shortcuts import render
 
 # Create your views here.
 
@@ -25,3 +25,7 @@ class ItemListView(generics.ListCreateAPIView):
 class ItemDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
+
+
+def index(request, *args, **kwargs):
+    return render(request, 'frontend/index.html')
