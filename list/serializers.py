@@ -10,7 +10,7 @@ class ItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item
         fields = [
-            'id', 'name', 'shoppinglist', 'is_checked']
+            'id', 'name', 'price', 'is_checked']
         
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:

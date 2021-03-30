@@ -14,12 +14,13 @@ class ShoppingList(models.Model):
 
     
 class Item(models.Model):
-    shoppinglist = models.ForeignKey(ShoppingList, related_name="items", on_delete=models.CASCADE)
+    # shoppinglist = models.ForeignKey(ShoppingList, related_name="items", on_delete=models.CASCADE)
 
     name = models.CharField(max_length=200)
     is_checked = models.BooleanField(default=False)
 
-
+    price = models.IntegerField(default=0)
+    
     def __str__(self):
         return self.name
     
