@@ -71,8 +71,8 @@ const ItemList: React.FC = () => {
     }
 
     if(refreshing) {
-        return <Center>
-        <Spinner />
+        return <Center h="500px">
+        <Spinner size="xl" thickness="5px"/>
         </Center>
     }
 
@@ -93,9 +93,9 @@ const ItemList: React.FC = () => {
             <Table>
                 <Thead>
                     <Tr>
-                    <Th isNumeric>ID</Th>
+                    <Th>ID</Th>
                     <Th>Name</Th>
-                    <Th isNumeric>Price</Th>
+                    <Th>Price</Th>
                     <Th>Remove</Th>
                     </Tr>
                 </Thead>
@@ -117,21 +117,19 @@ const ItemList: React.FC = () => {
 const ItemRow : React.FC = (props) => {
 
     const deleteItem = async(itemID) => {
-        const response : any = await fetch(`/api/items${itemID}/`, {
-            method: "DELETE",
-            mode: "same-origin",
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRFToken': Cookies.get('csrftoken') 
-            },
-            
-        })
+        const response = await fetch(`/api/items/${itemID}/`, {
+                method: "DELETE",
+                mode: "same-origin",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': Cookies.get('csrftoken') 
+                },
+                
+         })
         .then((response) => {
             props.fetchCallback()
-            return response.json()
         }).catch((error) => {
             window.alert(error)
-            return error
         })
     }
     return (
@@ -139,7 +137,7 @@ const ItemRow : React.FC = (props) => {
             <Td>{ props.item.id }</Td>
             <Td>{ props.item.name }</Td>
             <Td>{ props.item.price }</Td>
-            <Td><DeleteButton onClick={() => deleteItem(props.item.id)}/></Td>
+            <Td><DeleteButton removeItem={() => deleteItem(props.item.id)}/></Td>
         </Tr>
     )
 }
